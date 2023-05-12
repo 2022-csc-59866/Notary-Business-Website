@@ -44,7 +44,6 @@ class Home extends React.Component {
 									<br />
 									<p>Don't travel to find a notary, let us travel to you! You never need a notary until you need a notary, so when you do, think of Singh Notaries! Singh Notaries is a recognized name in the mobile notary and services domain as a New York Notary Public. Singh Notaries provides mobile notary services to businesses, residences, transportation industry, hospitals, convalescent homes, jails, detention centers, hotels and more. Our services are guaranteed professional, punctual, and precise! Singh Notaries are available to notarize trust, legal agreements, adoption paperwork, parental permission to travel, health care directives, powers of attorney, motor vehicle transfer documents and more…! Your notary is only one call away from you! <br /></p>
 								</header>
-								{/*<span className="image featured"><img src="images/pic01.jpg" alt="" /></span>*/}
 							</section>
 							<section className="box special features">
 								<div className="features-row">
