@@ -43,7 +43,7 @@ def signup():
     
     email = user_data["email"]
 
-    # Check if email already exists in the database
+    
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
         flask.abort(409, description="An account with this email already exists.")
