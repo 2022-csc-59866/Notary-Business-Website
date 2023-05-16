@@ -5,9 +5,11 @@ Senior Design Project
 This project demonstrates a full stack business web application design for Notary Services. Website will provide an increased visibility in search engines and makes it easier for customers to discover the business. It will also help in increase the branding and credibility of a business. Most importantly it is supposed drive business growth in the competitive market. 
 
 For installation for the backend dependencies: 
+
 -pip install -r requirements.txt
 
-For installation for the front dependencies: 
+For installation for the front dependencies:
+
 -npm install
 
 To start the flask backend server:
