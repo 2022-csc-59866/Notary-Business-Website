@@ -14,18 +14,23 @@ class About extends React.Component {
                         <p>Learn about Singh Notaries</p>
                     </header>
                     <div className="box">
-                        <span className="image featured"><img src="images/pic01.jpg" alt="" /></span>
-                        <h3>This is a subheading</h3>
-                        <p>Cep risus aliquam gravida cep ut lacus amet. Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae ante vestibulum ante. Blandit. Ante accumsan nisi eu placerat gravida placerat adipiscing in risus fusce vitae ac mi accumsan nunc in accumsan tempor blandit aliquet aliquet lobortis. Ultricies blandit lobortis praesent turpis. Adipiscing accumsan adipiscing adipiscing ac lacinia cep. Orci blandit a iaculis adipiscing ac. Vivamus ornare laoreet odio vis praesent nunc lorem mi. Erat. Tempus sem faucibus ac id. Vis in blandit. Nascetur ultricies blandit ac. Arcu aliquam. Accumsan mi eget adipiscing nulla. Non vestibulum ac interdum condimentum semper commodo massa arcu.</p>
+                        <span className="image featured"><img src="images/SinghNotariesLogo1.png" alt="" /></span>
+                        <p>Welcome to our Notary Business! We here at Singh Notaries, are dedicated to providing professional and reliable notary services to individuals and businesses alike. With years of experience in the industry, we understand the importance of accuracy, confidentiality, and efficiency in notarial transactions.</p>
                         <div className="row">
                             <div className="row-6 row-12-mobilep">
-                                <h3>And now a subheading</h3>
-                                <p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+                                <p>Our team of highly skilled and certified notaries is committed to meeting your specific needs, whether it's for real estate documents, legal contracts, or personal affidavits. We pride ourselves on delivering exceptional customer service, ensuring that every client receives personalized attention and their documents are handled with the utmost care.</p>
                             </div>
                             <div className="row-6 row-12-mobilep">
-                                <h3>And another subheading</h3>
-                                <p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+                                <p>At our Notary Business, we strive to make the notarization process seamless and convenient. We offer flexible payment options, including mobile notary services, to accommodate your busy lifestyle. Our goal is to provide you with a hassle-free experience, saving you time and effort while ensuring the validity and integrity of your important documents.</p>                            </div>
+                            <div className="row-6 row-12-mobilep">
+                                <p>Choose our Notary Business for all your notarial needs and experience the professionalism and reliability that sets us apart. We look forward to serving you and becoming your trusted partner in all your notary requirements.</p>
                             </div>
+                        </div>
+                        <div className="row-6 row-12-mobilep" style={{ textAlign: "center" }}>
+                            <h3>We can be reached at:</h3>
+                            <h4>Address: 123 MainXYZ street Brooklyn, NY 11418</h4>
+                            <h4>Phone Number: +1(123)-456-7890</h4>
+                            <h4>Email: singhnotaries@gmail.com</h4>
                         </div>
                     </div>
                     <footer id="footer">

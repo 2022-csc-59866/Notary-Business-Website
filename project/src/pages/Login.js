@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Thirdpartylogin from "./Thirdpartylogin";
+
 
 const Login = ({ onLoginSuccess }) => {
     const [email, setEmail] = useState("");
@@ -11,11 +13,9 @@ const Login = ({ onLoginSuccess }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post("login", {
-                email,
-                password,
-            });
-            navigate('/home')
+            const response = await axios.post("login", { email, password });
+            const { email: loggedInEmail, otherData } = response.data;
+            navigate("/home", { state: { loggedInEmail } });
         } catch (error) {
             setError("Incorrect email or password");
         }
@@ -41,8 +41,7 @@ const Login = ({ onLoginSuccess }) => {
                                     id="email"
                                     value={email}
                                     placeholder="Email"
-                                    onChange={(event) => setEmail(event.target.value)}
-                                />
+                                    onChange={(event) => setEmail(event.target.value)} />
                             </div>
                             <div className="col-12">
                                 <input
@@ -51,8 +50,7 @@ const Login = ({ onLoginSuccess }) => {
                                     id="password"
                                     value={password}
                                     placeholder="Password"
-                                    onChange={(event) => setPassword(event.target.value)}
-                                />
+                                    onChange={(event) => setPassword(event.target.value)} />
                             </div>
                             <div className="col-12">
                                 <ul className="actions special">
@@ -66,6 +64,10 @@ const Login = ({ onLoginSuccess }) => {
                     <div style={{ textAlign: "center" }}>
                         <Link to="/signup">Don't have an account?</Link>
                     </div>
+                    <div style={{ textAlign: "center" }}>
+                        <Thirdpartylogin />
+                    </div>
+
                 </div>
             </section>
             <footer id="footer">

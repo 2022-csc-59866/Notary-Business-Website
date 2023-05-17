@@ -3,11 +3,13 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LoginButton from "./pages/LoginButton";
 import FAQ from "./pages/FAQ";
 import Signup from "./pages/Signup";
 import Payment from "./pages/Payment"
 import Login from "./pages/Login"
+import BookNow from "./pages/BookNow";
+import Thirdpartylogin from "./pages/Thirdpartylogin";
+
 
 function App() {
 	return (
@@ -21,7 +23,9 @@ function App() {
 					<Route path='/contact' element={<Contact />} />
 					<Route path='/signup' element={<Signup />} />
 					<Route path='/login' element={<Login />} />
+					<Route path='/logout' />
 					<Route path='/pay' element={<Payment />} />
+					<Route path='/booknow' element={<BookNow />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

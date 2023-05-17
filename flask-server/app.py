@@ -1,63 +1,46 @@
 import flask
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 from flask_login import LoginManager, UserMixin, login_user, login_required
+import flask_login
 from passlib.hash import pbkdf2_sha256
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.hybrid import hybrid_property
 import json
+from models import User, Message, db
+from flask_login import logout_user
+from sqlalchemy.orm.exc import NoResultFound
+
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
-db = SQLAlchemy(app)
 app.config['SECRET_KEY'] = 'secretkey'
 app.app_context().push()
-
+db.init_app(app)
 login_manager = LoginManager(app)
-
-class User(UserMixin, db.Model):
-    
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    full_name = Column(String, nullable=False)
-    email = Column(String, nullable=False, unique=True)
-    _password = Column(String, nullable=False)
-
-    @hybrid_property
-    def password(self):
-        return self._password
-
-    @password.setter
-    def password(self, plaintext):
-        self._password = pbkdf2_sha256.hash(plaintext)
-
 @login_manager.user_loader
+
+
 def load_user(user_id):
     return User.query.get(int(user_id))
-
 @app.route("/signup", methods=["POST"])
+
+
 def signup():
     user_data = flask.request.get_json()
     required_fields = ["full_name", "email", "password"]
     for field in required_fields:
         if field not in user_data:
             flask.abort(400, description=f"{field} cannot be blank.")
-    
     email = user_data["email"]
-
-    
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
         flask.abort(409, description="An account with this email already exists.")
-
     user = User()
     user.full_name = user_data["full_name"]
     user.email = user_data["email"]
     user.password = user_data["password"]
-
     db.session.add(user)
     db.session.commit()
-
-    login_user(user)
-
     return flask.jsonify(
         {
             "full_name": user.full_name,
@@ -72,14 +55,12 @@ def login():
     for field in required_fields:
         if field not in login_data:
             flask.abort(400, description=f"{field} cannot be blank.")
-
     user = User.query.filter_by(email=login_data["email"]).one()
     if not user:
         flask.abort(401, description=f"Incorrect email or password.")
     is_correct_password = pbkdf2_sha256.verify(login_data["password"], user.password)
     if not is_correct_password:
         flask.abort(401, description=f"Incorrect email or password.")
-
     login_user(user)
     return flask.jsonify(
         {
@@ -88,41 +69,46 @@ def login():
         }
     )
 
-"""
-@blueprint.route("/logout", methods=["POST"])
+
+
+@app.route("/logout", methods=["POST"])
 @flask_login.login_required
 def logout():
-    flask_login.logout_user()
+    login_data = flask.request.get_json()
+    try:
+        user = User.query.filter_by(email=login_data["email"]).one()
+    except NoResultFound:
+        # Handle the case when no user is found with the given email
+        return {"error": "User not found"}, 404
+    logout_user()
     return {}
 
 
+"""
 @login_manager.login_manager.user_loader
 def load_user(user_id):
     return database.db.session.get(User, int(user_id))
 """
-
+"""
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     full_name = db.Column(db.String(255), nullable=False)
-    email = Column(String, nullable=False)
+    email = db.Column(db.String(255), nullable=False)
     subject = db.Column(db.String(255), nullable=False)
     message = db.Column(db.String(5000))
+"""
 
 @app.route('/contact', methods=['POST'])
 def message():
-   # import pdb; pdb.set_trace()
-    data = request.get_json()
+    data = request.form
     full_name = data.get('full_name')
     email = data.get('email')
     subject = data.get('subject')
     message = data.get('message')
-    new_message = Message(full_name=full_name, email = email, subject=subject, message=message)
-    #import pdb; pdb.set_trace()
-    db.session.add(new_message)
+    message = Message(full_name=full_name, email=email, subject=subject, message=message)
+    db.session.add(message)
     db.session.commit()
     return jsonify({'message': 'Message saved successfully'})
-
-
 
 
 import stripe
@@ -146,10 +132,7 @@ def pay():
     except Exception as e:
         return jsonify(error=str(e)), 403
 
-
-
 if __name__ == "__main__":
-    db.create_all()
     app.run(port=8080, debug=True)
 
     
