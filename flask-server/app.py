@@ -69,8 +69,6 @@ def login():
         }
     )
 
-
-
 @app.route("/logout", methods=["POST"])
 @flask_login.login_required
 def logout():
@@ -78,25 +76,9 @@ def logout():
     try:
         user = User.query.filter_by(email=login_data["email"]).one()
     except NoResultFound:
-        # Handle the case when no user is found with the given email
         return {"error": "User not found"}, 404
     logout_user()
     return {}
-
-
-"""
-@login_manager.login_manager.user_loader
-def load_user(user_id):
-    return database.db.session.get(User, int(user_id))
-"""
-"""
-class Message(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    full_name = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
-    subject = db.Column(db.String(255), nullable=False)
-    message = db.Column(db.String(5000))
-"""
 
 @app.route('/contact', methods=['POST'])
 def message():

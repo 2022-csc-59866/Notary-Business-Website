@@ -39,12 +39,6 @@ function Home() {
 								<li><Link to="/about">About</Link></li>
 								<li><Link to="/contact">Contact</Link></li>
 								<li><button onClick={handleLogout}>Log Out</button></li>
-								{/*<li>
-									{loggedIn ? (
-										<Link to="/home" className="button">Log Out</Link>
-									) : (
-										<Link to="/login" className="button">Log In </Link>)}
-									</li> */}
 								<li><Link to="/login" className="button">Log In</Link></li>
 							</ul>
 						</nav>

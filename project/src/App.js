@@ -7,7 +7,6 @@ import FAQ from "./pages/FAQ";
 import Signup from "./pages/Signup";
 import Payment from "./pages/Payment"
 import Login from "./pages/Login"
-import BookNow from "./pages/BookNow";
 import Thirdpartylogin from "./pages/Thirdpartylogin";
 
 
@@ -25,7 +24,6 @@ function App() {
 					<Route path='/login' element={<Login />} />
 					<Route path='/logout' />
 					<Route path='/pay' element={<Payment />} />
-					<Route path='/booknow' element={<BookNow />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
